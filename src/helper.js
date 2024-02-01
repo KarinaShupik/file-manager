@@ -29,9 +29,15 @@ export const showGoodbyeMessage = () => {
     });
 }
 
+let currentPath = os.homedir();
+
 //show current working directory
-export const showWorkingDirectory = () => {
-    let currentPath = os.homedir();
+export const getWorkingDirectory = () => {
     console.log('You are currently in', currentPath);
+}
+
+//set working directory
+export const setWorkingDirectory = (newPath) => {
+    currentPath = newPath
 }
 
