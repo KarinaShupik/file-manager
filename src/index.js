@@ -2,7 +2,8 @@ import {
   getUsername,
   contentWelcomeMessage,
   onClose,
-  showGoodbyeMessage
+  showGoodbyeMessage,
+  showWorkingDirectory
 } from './helper.js'
 import { listenInputCommands } from './inputController.js'
 
@@ -11,6 +12,7 @@ const startFileManager = () =>{
 
   listenInputCommands()
 
+  showWorkingDirectory()
   onClose()
   showGoodbyeMessage()
 }

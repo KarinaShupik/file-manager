@@ -1,3 +1,4 @@
+import os from 'node:os';
 
 export const getUsername = () => {
     const args = process.argv.slice(2);
@@ -5,6 +6,7 @@ export const getUsername = () => {
     return result;
 }
 
+//Messages
 export const contentWelcomeMessage = (username) => {
     console.log(`Welcome to the File Manager, ${username}!`);
 }
@@ -13,6 +15,7 @@ export const contentGoodbyeMessage = (username) => {
     console.log(`Thank you for using File Manager, ${username}, goodbye!`);
 }
 
+//on exit
 export const exit = () => process.exit(0);
 
 export const onClose = () => {
@@ -25,6 +28,10 @@ export const showGoodbyeMessage = () => {
        contentGoodbyeMessage(getUsername())
     });
 }
- 
 
+//show current working directory
+export const showWorkingDirectory = () => {
+    let currentPath = os.homedir();
+    console.log('You are currently in', currentPath);
+}
 
