@@ -31,13 +31,31 @@ export const showGoodbyeMessage = () => {
 
 let currentPath = os.homedir();
 
+export const getWorkingDirectory = () =>{
+    return  currentPath
+}
+
+export const setWorkingDirectory = (newPath) => {
+    currentPath = newPath
+}
+
+export const showWorkingDirectory = () => {
+    console.log('You are currently in', getWorkingDirectory());
+}
+
+/*
 //show current working directory
 export const getWorkingDirectory = () => {
-    console.log('You are currently in', currentPath);
+    return showWorkingDirectory(currentPath)
 }
 
 //set working directory
 export const setWorkingDirectory = (newPath) => {
     currentPath = newPath
+}*/
+
+export const getArguments = (args) => {
+    const listOfCommands = args.split(" ");
+    return listOfCommands
 }
 

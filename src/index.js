@@ -3,7 +3,7 @@ import {
   contentWelcomeMessage,
   onClose,
   showGoodbyeMessage,
-  getWorkingDirectory
+  showWorkingDirectory
 } from './helper.js'
 import { listenInputCommands } from './inputController.js'
 
@@ -12,7 +12,7 @@ const startFileManager = () =>{
 
   listenInputCommands()
 
-  getWorkingDirectory()
+  showWorkingDirectory()
   onClose()
   showGoodbyeMessage()
 }
