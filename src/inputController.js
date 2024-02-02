@@ -3,7 +3,7 @@ import { stdin as input } from 'node:process';
 import { exit, getArguments } from './helper.js'
 import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
 import {errorInvalidOperation, errorOperationFailed} from './errors.js'
-import { readAndPrintFile, createEmptyFile } from './commands/fs.js';
+import { readAndPrintFile, createEmptyFile, renameFile } from './commands/fs.js';
 
 
 export const listenInputCommands = () => {
@@ -34,6 +34,10 @@ export const listenInputCommands = () => {
                 case "add":
                     createEmptyFile(arg1);
                     break;
+                case "rn":
+                    renameFile(arg1, arg2);
+                    break;
+                
             }
         }catch (error){
             errorOperationFailed()
