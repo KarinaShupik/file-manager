@@ -1,7 +1,8 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input } from 'node:process';
 import { exit, getArguments, showWorkingDirectory, getWorkingDirectory } from './helper.js'
-import { changeDirectory } from './commands/nwd.js';
+import { changeDirectory, moveUp } from './commands/nwd.js';
+
 
 export const listenInputCommands = () => {
 
@@ -16,6 +17,9 @@ export const listenInputCommands = () => {
 
         try{
             switch(command){
+                case "up":
+                    moveUp();
+                    break;
                 case "cd":
                     changeDirectory(arg1);
                     break;

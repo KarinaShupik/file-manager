@@ -24,3 +24,8 @@ export const changeDirectory = async (newPath) => {
         errorOperationFailed();
     }
 };
+
+export const moveUp = () => {
+    const newDir = path.join(getWorkingDirectory(), "..");
+    showWorkingDirectory(setWorkingDirectory(newDir));
+}

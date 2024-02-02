@@ -43,17 +43,6 @@ export const showWorkingDirectory = () => {
     console.log('You are currently in', getWorkingDirectory());
 }
 
-/*
-//show current working directory
-export const getWorkingDirectory = () => {
-    return showWorkingDirectory(currentPath)
-}
-
-//set working directory
-export const setWorkingDirectory = (newPath) => {
-    currentPath = newPath
-}*/
-
 export const getArguments = (args) => {
     const listOfCommands = args.split(" ");
     return listOfCommands
