@@ -40,18 +40,22 @@ export const renameFile = async (currentFilePath, newFileName) => {
     }
 
     try {
+        // Check if the current file exists and get its stats
+        const stats = await fs.stat(currentFilePath);
+
+        if (!stats.isFile()) {
+            errorInvalidOperation();
+        }
+
         const currentDirectory = path.dirname(currentFilePath);
         const newFilePath = path.join(currentDirectory, newFileName);
-
-        // Check if the current file exists
-        await fs.access(currentFilePath);
 
         // Rename the file using fs.promises.rename
         await fs.rename(currentFilePath, newFilePath);
 
         showWorkingDirectory(setWorkingDirectory(currentDirectory));
     } catch (error) {
-        console.log("Error:", error.message);
+        console.error("Error:", error.message);
         errorOperationFailed();
     }
 };
