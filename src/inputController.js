@@ -1,7 +1,8 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input } from 'node:process';
 import { exit, getArguments, showWorkingDirectory, getWorkingDirectory } from './helper.js'
-import { changeDirectory, moveUp } from './commands/nwd.js';
+import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
+import {errorInvalidOperation, errorOperationFailed} from './errors.js'
 
 
 export const listenInputCommands = () => {
@@ -23,9 +24,12 @@ export const listenInputCommands = () => {
                 case "cd":
                     changeDirectory(arg1);
                     break;
+                case "ls":
+                    showListOfContent();
+                    break;
             }
         }catch (error){
-
+            errorOperationFailed()
         }
     }); 
 }
