@@ -5,7 +5,7 @@ import { getWorkingDirectory, setWorkingDirectory} from './path.js';
 import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
 import {errorInvalidOperation, errorOperationFailed} from './errors.js'
 import { readAndPrintFile, createEmptyFile, renameFile, copyFile, moveFile, removeFile } from './commands/fs.js';
-import { getEOL } from './commands/os.js';
+import { getEOL, getCPU } from './commands/os.js';
 
 
 export const listenInputCommands = () => {
@@ -52,8 +52,11 @@ export const listenInputCommands = () => {
                     {
                         switch(arg1){
                             case "--EOL":
-                            await getEOL();
-                            break;
+                                await getEOL();
+                                break;
+                            case "--cpus":
+                                await getCPU();
+                                break;
                         }}
                     break;
                 
