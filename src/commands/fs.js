@@ -94,3 +94,17 @@ export const moveFile = async (pathToFile, pathToNewDirectory) => {
         errorOperationFailed()
     }
 };
+
+export const removeFile = async (pathToFile) => {
+    if (pathToFile === undefined) {
+        errorInvalidOperation();
+        return;
+    }
+
+    try {
+        await fs.rm(pathToFile);
+    } catch (error) {
+        console.error("Error:", error.message);
+        errorOperationFailed()
+    }
+};

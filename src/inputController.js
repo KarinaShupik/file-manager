@@ -4,7 +4,7 @@ import { exit, getArguments, showWorkingDirectory, getAbsolutePath } from './hel
 import { getWorkingDirectory, setWorkingDirectory} from './path.js';
 import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
 import {errorInvalidOperation, errorOperationFailed} from './errors.js'
-import { readAndPrintFile, createEmptyFile, renameFile, copyFile, moveFile } from './commands/fs.js';
+import { readAndPrintFile, createEmptyFile, renameFile, copyFile, moveFile, removeFile } from './commands/fs.js';
 
 
 export const listenInputCommands = () => {
@@ -43,6 +43,9 @@ export const listenInputCommands = () => {
                     break;
                 case "mv":
                     await moveFile(arg1, arg2);
+                    break;
+                case "rm":
+                    await removeFile(arg1);
                     break;
                 
             }
