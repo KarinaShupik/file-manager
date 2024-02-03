@@ -1,4 +1,6 @@
+import { createReadStream, createWriteStream } from "fs";
 import fs from "fs/promises";
+import { pipeline } from "stream/promises";
 import path from "path";
 import { errorInvalidOperation, errorOperationFailed } from "../errors.js";
 import { getWorkingDirectory, setWorkingDirectory} from '../path.js';
@@ -54,5 +56,26 @@ export const renameFile = async (currentFilePath, newFileName) => {
     } catch (error) {
         console.error("Error:", error.message);
         errorOperationFailed();
+    }
+};
+
+export const copyFile = async (pathToFile, pathToNewDirectory) => {
+    if (pathToFile === undefined || pathToNewDirectory === undefined) {
+        errorInvalidOperation();
+        return;
+    }
+
+    const srcFilePath = getAbsolutePath(pathToFile)
+    const srcFilename = path.basename(srcFilePath);
+    const srcDestPath = getAbsolutePath(pathToNewDirectory)
+    const destFilePath = path.resolve(srcDestPath, srcFilename);
+
+    try {
+        const readStream = createReadStream(srcFilePath);
+        const writeStream = createWriteStream(destFilePath);
+        await pipeline(readStream, writeStream);
+    } catch (error) {
+        console.error("Error:", error.message);
+        errorOperationFailed()
     }
 };

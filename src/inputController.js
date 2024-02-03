@@ -4,7 +4,7 @@ import { exit, getArguments, showWorkingDirectory, getAbsolutePath } from './hel
 import { getWorkingDirectory, setWorkingDirectory} from './path.js';
 import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
 import {errorInvalidOperation, errorOperationFailed} from './errors.js'
-import { readAndPrintFile, createEmptyFile, renameFile } from './commands/fs.js';
+import { readAndPrintFile, createEmptyFile, renameFile, copyFile } from './commands/fs.js';
 
 
 export const listenInputCommands = () => {
