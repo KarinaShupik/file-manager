@@ -6,6 +6,7 @@ import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
 import {errorInvalidOperation, errorOperationFailed} from './errors.js'
 import { readAndPrintFile, createEmptyFile, renameFile, copyFile, moveFile, removeFile } from './commands/fs.js';
 import { getEOL, getCPU, getUsername, getArchitecture } from './commands/os.js';
+import { calculateHash } from './commands/hash.js';
 
 
 export const listenInputCommands = () => {
@@ -64,6 +65,9 @@ export const listenInputCommands = () => {
                                 await getArchitecture();
                                 break;
                         }}
+                    break;
+                case "hash":
+                    await calculateHash(arg1);
                     break;
                 
             }
