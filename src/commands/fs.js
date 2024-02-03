@@ -4,16 +4,12 @@ import { errorInvalidOperation, errorOperationFailed } from "../errors.js";
 import { getWorkingDirectory, setWorkingDirectory} from '../path.js';
 import { showWorkingDirectory, getAbsolutePath } from "../helper.js";
 
-export const readAndPrintFile = async (newPath) => {
-    if (newPath === undefined){
-        errorInvalidOperation();
-        return;
-    }
-
+export const readAndPrintFile = async (argPath) => {
     try {
-        const content = await fs.readFile(newPath, { encoding: 'utf8' });
+        const pathDir = getAbsolutePath(argPath)
+        const content = await fs.readFile(pathDir, { encoding: 'utf8' });
         console.log(content)
-        showWorkingDirectory(setWorkingDirectory(newPath));
+
     } catch (error) {
         console.log("Error:", error.message);
         errorOperationFailed();
@@ -27,7 +23,7 @@ export const createEmptyFile = async (fileName) => {
         // Create an empty file using fs.promises.writeFile
         await fs.writeFile(filePath, "");
 
-        showWorkingDirectory(setWorkingDirectory(currentDirectory));
+        setWorkingDirectory(currentDirectory);
     } catch (error) {
         console.log("Error:", error.message);
         errorOperationFailed();
@@ -54,7 +50,7 @@ export const renameFile = async (currentFilePath, newFileName) => {
         // Rename the file using fs.promises.rename
         await fs.rename(currentFilePath, newFilePath);
 
-        showWorkingDirectory(setWorkingDirectory(currentDirectory));
+        setWorkingDirectory(currentDirectory);
     } catch (error) {
         console.error("Error:", error.message);
         errorOperationFailed();

@@ -21,25 +21,25 @@ export const listenInputCommands = () => {
         try{
             switch(command){
                 case "up":
-                    moveUp();
+                    await moveUp();
                     break;
                 case "cd":
-                    changeDirectory(arg1);
+                    await changeDirectory(arg1);
                     break;
                 case "ls":
-                    showListOfContent();
+                    await showListOfContent();
                     break;
                 case "cat":
-                    readAndPrintFile(arg1);
+                    await readAndPrintFile(arg1);
                     break;
                 case "add":
-                    createEmptyFile(arg1);
+                    await createEmptyFile(arg1);
                     break;
                 case "rn":
-                    renameFile(arg1, arg2);
+                    await renameFile(arg1, arg2);
                     break;
                 case "cp":
-                     copyFile(arg1, arg2);
+                    await copyFile(arg1, arg2);
                     break;
                 
             }
