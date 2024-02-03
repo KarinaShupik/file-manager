@@ -5,6 +5,7 @@ import {
   showGoodbyeMessage,
   showWorkingDirectory
 } from './helper.js'
+import { getWorkingDirectory, setWorkingDirectory} from './path.js';
 import { listenInputCommands } from './inputController.js'
 
 const startFileManager = () =>{
@@ -12,7 +13,7 @@ const startFileManager = () =>{
 
   listenInputCommands()
 
-  showWorkingDirectory()
+  showWorkingDirectory(getWorkingDirectory())
   onClose()
   showGoodbyeMessage()
 }

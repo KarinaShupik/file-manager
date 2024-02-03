@@ -1,25 +1,18 @@
 import { errorInvalidOperation, errorOperationFailed } from "../errors.js";
 import path from "path";
 import fs from "fs/promises";
-import { getWorkingDirectory, setWorkingDirectory, showWorkingDirectory } from "../helper.js";
+import { getWorkingDirectory, setWorkingDirectory} from '../path.js';
+import { showWorkingDirectory, getAbsolutePath } from "../helper.js";
 
-export const changeDirectory = async (newPath) => {
-    if (newPath === undefined){
+export const changeDirectory = async (argPath) => {
+    if (argPath === undefined){
         errorInvalidOperation()
         return;
     }
-
-    newPath = path.resolve(getWorkingDirectory,  newPath);
-
+    
     try {
-        // Check if the provided path is a directory
-        const stats = await fs.stat(newPath);
-            
-        if (stats.isDirectory()) {
-            showWorkingDirectory(setWorkingDirectory(newPath));
-        } else {
-            errorInvalidOperation();
-        }
+        const pathDir = getAbsolutePath(argPath)
+        setWorkingDirectory(pathDir)
     } catch (error) {
         errorOperationFailed();
     }
@@ -27,7 +20,7 @@ export const changeDirectory = async (newPath) => {
 
 export const moveUp = () => {
     const newDir = path.join(getWorkingDirectory(), "..");
-    showWorkingDirectory(setWorkingDirectory(newDir));
+    setWorkingDirectory(newDir);
 }
 
 export const showListOfContent = async () => {

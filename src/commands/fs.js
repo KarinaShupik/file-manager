@@ -1,7 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
 import { errorInvalidOperation, errorOperationFailed } from "../errors.js";
-import { getWorkingDirectory, setWorkingDirectory, showWorkingDirectory } from "../helper.js";
+import { getWorkingDirectory, setWorkingDirectory} from '../path.js';
+import { showWorkingDirectory, getAbsolutePath } from "../helper.js";
 
 export const readAndPrintFile = async (newPath) => {
     if (newPath === undefined){

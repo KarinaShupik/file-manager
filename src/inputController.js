@@ -1,6 +1,7 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input } from 'node:process';
-import { exit, getArguments } from './helper.js'
+import { exit, getArguments, showWorkingDirectory, getAbsolutePath } from './helper.js';
+import { getWorkingDirectory, setWorkingDirectory} from './path.js';
 import { changeDirectory, moveUp, showListOfContent } from './commands/nwd.js';
 import {errorInvalidOperation, errorOperationFailed} from './errors.js'
 import { readAndPrintFile, createEmptyFile, renameFile } from './commands/fs.js';
@@ -37,10 +38,14 @@ export const listenInputCommands = () => {
                 case "rn":
                     renameFile(arg1, arg2);
                     break;
+                case "cp":
+                     copyFile(arg1, arg2);
+                    break;
                 
             }
         }catch (error){
             errorOperationFailed()
         }
+        showWorkingDirectory(getWorkingDirectory())
     }); 
 }

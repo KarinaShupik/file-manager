@@ -1,4 +1,5 @@
-import os from 'node:os';
+import path from "path";
+import { getWorkingDirectory } from "./path.js";
 
 export const getUsername = () => {
     const args = process.argv.slice(2);
@@ -29,22 +30,16 @@ export const showGoodbyeMessage = () => {
     });
 }
 
-let currentPath = os.homedir();
-
-export const getWorkingDirectory = () =>{
-    return  currentPath
-}
-
-export const setWorkingDirectory = (newPath) => {
-    currentPath = newPath
+export const getArguments = (args) => {
+    const listOfCommands = args.split(" ");
+    return listOfCommands
 }
 
 export const showWorkingDirectory = () => {
     console.log('You are currently in', getWorkingDirectory());
 }
 
-export const getArguments = (args) => {
-    const listOfCommands = args.split(" ");
-    return listOfCommands
+export const getAbsolutePath = (newPath) => {
+    return path.resolve(getWorkingDirectory(), newPath)
 }
 
