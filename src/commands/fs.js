@@ -79,3 +79,18 @@ export const copyFile = async (pathToFile, pathToNewDirectory) => {
         errorOperationFailed()
     }
 };
+
+export const moveFile = async (pathToFile, pathToNewDirectory) => {
+    if (pathToFile === undefined || pathToNewDirectory === undefined) {
+        errorInvalidOperation();
+        return;
+    }
+
+    try {
+        await copyFile(pathToFile, pathToNewDirectory);
+        await fs.rm(pathToFile);
+    } catch (error) {
+        console.error("Error:", error.message);
+        errorOperationFailed()
+    }
+};
