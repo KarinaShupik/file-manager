@@ -18,3 +18,8 @@ export const getUsername = () => {
     const username = os.userInfo().username;
     console.log(username)
 }
+
+export const getArchitecture = () => {
+    const cpuArchitecture = os.arch();
+    console.log(cpuArchitecture)
+}
