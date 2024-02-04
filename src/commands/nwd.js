@@ -7,9 +7,15 @@ import { showWorkingDirectory, getAbsolutePath } from "../helper.js";
 export const changeDirectory = async (argPath) => {
     try {
         const pathDir = getAbsolutePath(argPath)
-        setWorkingDirectory(pathDir)
+        const stats = await fs.stat(pathDir);
+
+        if (stats.isDirectory()) {
+            setWorkingDirectory(pathDir)
+        } else {
+            errorInvalidOperation();
+        }
     } catch (error) {
-        errorInvalidOperation()
+        errorOperationFailed()
     }
 };
 
