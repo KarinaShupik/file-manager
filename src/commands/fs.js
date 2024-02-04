@@ -13,7 +13,7 @@ export const readAndPrintFile = async (argPath) => {
         console.log(content)
 
     } catch (error) {
-        errorOperationFailed();
+        errorInvalidOperation()
     }
 }
 
@@ -26,7 +26,7 @@ export const createEmptyFile = async (fileName) => {
 
         setWorkingDirectory(currentDirectory);
     } catch (error) {
-        errorOperationFailed();
+        errorInvalidOperation()
     }
 }
 
@@ -48,7 +48,7 @@ export const renameFile = async (currentFilePath, newFileName) => {
 
         setWorkingDirectory(currentDirectory);
     } catch (error) {
-        errorOperationFailed();
+        errorInvalidOperation()
     }
 };
 
@@ -64,7 +64,7 @@ export const copyFile = async (pathToFile, pathToNewDirectory) => {
         const writeStream = createWriteStream(destFilePath);
         await pipeline(readStream, writeStream);
     } catch (error) {
-        errorOperationFailed()
+        errorInvalidOperation()
     }
 };
 
@@ -73,7 +73,7 @@ export const moveFile = async (pathToFile, pathToNewDirectory) => {
         await copyFile(pathToFile, pathToNewDirectory);
         await fs.rm(pathToFile);
     } catch (error) {
-        errorOperationFailed()
+        errorInvalidOperation()
     }
 };
 
@@ -81,6 +81,6 @@ export const removeFile = async (pathToFile) => {
     try {
         await fs.rm(pathToFile);
     } catch (error) {
-        errorOperationFailed()
+        errorInvalidOperation()
     }
 };

@@ -9,7 +9,7 @@ export const changeDirectory = async (argPath) => {
         const pathDir = getAbsolutePath(argPath)
         setWorkingDirectory(pathDir)
     } catch (error) {
-        errorOperationFailed();
+        errorInvalidOperation()
     }
 };
 
@@ -48,6 +48,6 @@ export const showListOfContent = async () => {
 
         showWorkingDirectory(setWorkingDirectory(currentDirectory));
     } catch (error) {
-        errorOperationFailed()
+        errorInvalidOperation()
     }
 }
