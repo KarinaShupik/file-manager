@@ -4,7 +4,7 @@ import { pipeline } from "stream/promises";
 import path from "path";
 import { errorInvalidOperation, errorOperationFailed } from "../errors.js";
 import { getWorkingDirectory, setWorkingDirectory} from '../path.js';
-import { showWorkingDirectory, getAbsolutePath } from "../helper.js";
+import { getAbsolutePath } from "../helper.js";
 
 export const readAndPrintFile = async (argPath) => {
     try {
@@ -13,7 +13,6 @@ export const readAndPrintFile = async (argPath) => {
         console.log(content)
 
     } catch (error) {
-        console.log("Error:", error.message);
         errorOperationFailed();
     }
 }
@@ -27,16 +26,11 @@ export const createEmptyFile = async (fileName) => {
 
         setWorkingDirectory(currentDirectory);
     } catch (error) {
-        console.log("Error:", error.message);
         errorOperationFailed();
     }
 }
 
 export const renameFile = async (currentFilePath, newFileName) => {
-    if (currentFilePath === undefined){
-        errorInvalidOperation();
-        return;
-    }
 
     try {
         // Check if the current file exists and get its stats
@@ -54,16 +48,11 @@ export const renameFile = async (currentFilePath, newFileName) => {
 
         setWorkingDirectory(currentDirectory);
     } catch (error) {
-        console.error("Error:", error.message);
         errorOperationFailed();
     }
 };
 
 export const copyFile = async (pathToFile, pathToNewDirectory) => {
-    if (pathToFile === undefined || pathToNewDirectory === undefined) {
-        errorInvalidOperation();
-        return;
-    }
 
     const srcFilePath = getAbsolutePath(pathToFile)
     const srcFilename = path.basename(srcFilePath);
@@ -75,36 +64,23 @@ export const copyFile = async (pathToFile, pathToNewDirectory) => {
         const writeStream = createWriteStream(destFilePath);
         await pipeline(readStream, writeStream);
     } catch (error) {
-        console.error("Error:", error.message);
         errorOperationFailed()
     }
 };
 
 export const moveFile = async (pathToFile, pathToNewDirectory) => {
-    if (pathToFile === undefined || pathToNewDirectory === undefined) {
-        errorInvalidOperation();
-        return;
-    }
-
     try {
         await copyFile(pathToFile, pathToNewDirectory);
         await fs.rm(pathToFile);
     } catch (error) {
-        console.error("Error:", error.message);
         errorOperationFailed()
     }
 };
 
 export const removeFile = async (pathToFile) => {
-    if (pathToFile === undefined) {
-        errorInvalidOperation();
-        return;
-    }
-
     try {
         await fs.rm(pathToFile);
     } catch (error) {
-        console.error("Error:", error.message);
         errorOperationFailed()
     }
 };
