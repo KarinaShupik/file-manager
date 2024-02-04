@@ -76,7 +76,9 @@ export const listenInputCommands = () => {
                 case "decompress":
                     await decompressFile(arg1, arg2);
                     break;
-                
+                default:
+                    errorInvalidOperation()
+                    break;   
             }
         }catch (error){
             errorOperationFailed()
