@@ -5,11 +5,6 @@ import { getWorkingDirectory, setWorkingDirectory} from '../path.js';
 import { showWorkingDirectory, getAbsolutePath } from "../helper.js";
 
 export const changeDirectory = async (argPath) => {
-    if (argPath === undefined){
-        errorInvalidOperation()
-        return;
-    }
-    
     try {
         const pathDir = getAbsolutePath(argPath)
         setWorkingDirectory(pathDir)
