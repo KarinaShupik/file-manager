@@ -1,5 +1,8 @@
+(I had problems with git branches from the start, so I couldn't create a PR.)
+
 Task: https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/file-manager/assignment.md
 Done 04.02.2024 / deadline 06.02.2024
+
 Score: 330 / 330
 
     Basic Scope
