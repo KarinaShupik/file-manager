@@ -1,7 +1,6 @@
 import { getAbsolutePath } from "../helper.js"
 import { createReadStream } from 'node:fs';
 import { createHash } from 'node:crypto';
-import * as path from 'node:path';
 
 export const calculateHash = (argPath) => {
     const filePath = getAbsolutePath(argPath)

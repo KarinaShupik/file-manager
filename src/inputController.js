@@ -7,6 +7,7 @@ import {errorInvalidOperation, errorOperationFailed} from './errors.js'
 import { readAndPrintFile, createEmptyFile, renameFile, copyFile, moveFile, removeFile } from './commands/fs.js';
 import { getEOL, getCPU, getUsername, getArchitecture } from './commands/os.js';
 import { calculateHash } from './commands/hash.js';
+import { compressFile, decompressFile } from './commands/compressing.js'
 
 
 export const listenInputCommands = () => {
@@ -68,6 +69,12 @@ export const listenInputCommands = () => {
                     break;
                 case "hash":
                     await calculateHash(arg1);
+                    break;
+                case "compress":
+                    await compressFile(arg1, arg2);
+                    break;
+                case "decompress":
+                    await decompressFile(arg1, arg2);
                     break;
                 
             }
