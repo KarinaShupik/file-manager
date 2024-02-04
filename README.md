@@ -1,6 +1,7 @@
 Task: https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/file-manager/assignment.md
 Done 04.02.2024 / deadline 06.02.2024
 Score: 330 / 330
+
     Basic Scope
     General
       +6 Application accepts username and prints proper message
